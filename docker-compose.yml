@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  checker:
+    build:
+      context: ./apps/checker
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - checker
+
+  screenshot-service:
+    build:
+      context: ./apps/screenshot-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3000"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - screenshot-service
+
+  server:
+    build:
+      context: ./apps/server
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3000"
+    environment:
+      NODE_ENV: production
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3000"
+    environment:
+      NODE_ENV: production
+
+  workflow:
+    build:
+      context: ./apps/workflow
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3000"
+    environment:
+      NODE_ENV: production
